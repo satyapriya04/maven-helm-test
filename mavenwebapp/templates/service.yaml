@@ -1,15 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "mavenwebapp.fullname" . }}
+  name: {{ include "mavenwebapp.fullname" . }}-svc
   labels:
-    {{- include "mavenwebapp.labels" . | nindent 4 }}
+    app: {{ include "mavenwebapp.name" . }}
 spec:
   type: {{ .Values.service.type }}
+  selector:
+    app: {{ include "mavenwebapp.name" . }}
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
-  selector:
-    {{- include "mavenwebapp.selectorLabels" . | nindent 4 }}
+      targetPort: {{ .Values.service.targetPort }}
+
