@@ -1,4 +1,6 @@
 replicaCount: 2
+httpRoute:
+  enabled: false
 
 image:
   repository: ashokit/mavenwebapp
